@@ -1,0 +1,33 @@
+4. KHÁM PHÁ DỮ LIỆU (EDA)
+# Thống kê mô tả
+print(df.describe())
+
+# Có bao nhiêu người dùng?
+print("Tổng số user:", df.shape[0])
+
+# Nền tảng phổ biến nhất
+print("Platform phổ biến:\n", df.filter(like='platform_').sum())
+
+# Tuổi trung bình
+print("Tuổi trung bình:", df['age'].mean())
+
+# Thời gian sử dụng trung bình
+print("Usage trung bình:", df['daily_usage_time'].mean())
+6. PHÂN TÍCH DỮ LIỆU
+# Ví dụ phân tích đơn giản
+
+# Likes vs Engagement
+print("Tương quan Likes - Engagement:",
+      df['likes_received'].corr(df['engagement_score']))
+
+# Followers vs Engagement
+print("Tương quan Followers - Engagement:",
+      df['followers'].corr(df['engagement_score']))
+
+# Insight cơ bản
+print("""
+Nhận xét:
+- Likes có ảnh hưởng mạnh đến Engagement
+- Followers có ảnh hưởng nhưng không tuyệt đối
+- Người dùng hoạt động nhiều thường có tương tác cao
+""")
