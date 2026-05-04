@@ -1,0 +1,24 @@
+3. TIỀN XỬ LÝ DỮ LIỆU
+from sklearn.preprocessing import StandardScaler
+
+# 1. Mã hóa dữ liệu chữ (One-hot encoding)
+df = pd.get_dummies(df, columns=['gender', 'platform'], drop_first=True)
+
+# 2. Chuẩn hóa dữ liệu số
+scaler = StandardScaler()
+
+num_cols = ['age', 'daily_usage_time', 'posts_per_week',
+            'likes_received', 'comments_received', 'followers']
+
+df[num_cols] = scaler.fit_transform(df[num_cols])
+
+# 3. Tạo cột mới (feature engineering)
+# Ví dụ: mức độ hoạt động
+df['activity_score'] = df['posts_per_week'] + df['messages_sent']
+
+# Ví dụ: phân loại người dùng
+df['user_level'] = pd.cut(df['followers'],
+                         bins=[-1, 1000, 10000, 1000000],
+                         labels=['Low', 'Medium', 'High'])
+
+print(df.head())
